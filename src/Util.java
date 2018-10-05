@@ -70,7 +70,7 @@ public class Util {
 				al.add(temp);
 				n = n / 10;
 			}
-			
+
 			int temp2 = al.size() - 1;
 			for (int i = 0; i < al.size() / 2; i++) {
 
@@ -209,6 +209,22 @@ public class Util {
 		for (String i : ar) {
 			System.out.println(i);
 		}
+	}
+
+	public static void temperaturConversion(String s) {
+		int n = Integer.parseInt(s.substring(0, s.length() - 1));
+		if (s.contains("f") || s.contains("F")) {
+			System.out.println(((n - 32) * 5 / 9) + "c");
+		} else if (s.contains("c") || s.contains("c")) {
+			System.out.println(((n * 9 / 5) + 32) + "f");
+		}
+	}
+
+	public static double monthlyPayment(double P, double Y, double R) {
+		double n = 12 * Y;
+		double r = R / (12 * 100);
+		double pri = P * r / (1 - Math.pow((1 + r), (-n)));
+		return pri;
 	}
 
 	public static void main(String[] args) {

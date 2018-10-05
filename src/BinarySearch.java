@@ -18,6 +18,9 @@ public class BinarySearch {
 
 	public static int search(String s, String[] ar) {
 		Arrays.sort(ar);
+		for (String string : ar) {
+			System.out.println(string);
+		}
 		int low = 0;
 		int hig = ar.length - 1;
 		int mid = 0;
@@ -41,10 +44,8 @@ public class BinarySearch {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("array ");
-		for (String string : st) {
-			System.out.println(string);
-		}
-		System.out.println("index " + search("deepu", st));
+		
+		
+		System.out.println("index " + search("hey", st));
 	}
 }
