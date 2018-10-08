@@ -89,7 +89,6 @@ public class Util {
 		ArrayList<Integer> al = new ArrayList<Integer>();
 		for (int i = 2; i < 1000; i++) {
 			boolean b = true;
-
 			for (int j = 2; j <= i / 2; j++) {
 				if (i % j == 0) {
 					b = false;
@@ -232,11 +231,11 @@ public class Util {
 		int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
 		int m0 = m + 12 * ((14 - m) / 12) - 2;
 		int d0 = (d + x + 31 * m0 / 12) % 7;
-		
+
 		System.out.println(d0);
 	}
 
 	public static void main(String[] args) {
-		
+
 	}
 }
