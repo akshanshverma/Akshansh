@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * @since 06-08-2018
  *
  ******************************************************************************/
+
 public class Util {
 	/**
 	 * Function to check two string are anagram or not
@@ -192,8 +193,7 @@ public class Util {
 				}
 			}
 			/*
-			 * if number is divisible by only one and itself
-			 * the it will add to ArrayList
+			 * if number is divisible by only one and itself the it will add to ArrayList
 			 */
 			if (b == true) {
 				al.add(i);
@@ -201,28 +201,40 @@ public class Util {
 		}
 		return al;
 	}
-	
+
 	/**
-	 * function to perform binary search on array
-	 * @param n int is a number which we want to search in array
+	 * function to perform binary search on integer array
+	 * 
+	 * @param n   int is a number which we want to search in array
 	 * @param arr int type array in which we perform search operation
-	 * @return int value which is index of the number in array list.
-	 * if number is not present in Array the it will return -1
+	 * @return int value which is index of the number in array list. if number is
+	 *         not present in Array the it will return -1
 	 */
 	public static int binarySearch(int n, int[] arr) {
 		/*
-		 * insertionSort to sort the array because binary search can perform only
-		 * on sorted array 
+		 * insertionSort to sort the array because binary search can perform only on
+		 * sorted array
 		 */
 		int[] ar = insertionSort(arr);
-		
+		/*
+		 * low is lower index of array hig is last index of array mid is to store mid
+		 * index of low and last index
+		 */
 		int low = 0;
 		int hig = ar.length - 1;
 		int mid = 0;
+
+		/*
+		 * while loop will work until low reach hig
+		 */
 		while (low <= hig) {
 
 			mid = (low + hig) / 2;
-
+			/*
+			 * if number is greater then mid it will change low as mid + 1 else if number is
+			 * less then mid it will change high index to mid -1 else if number is equal to
+			 * mid then it will return mid
+			 */
 			if (ar[mid] < n) {
 				low = mid + 1;
 			} else if (ar[mid] > n) {
@@ -234,13 +246,34 @@ public class Util {
 		return -1;
 	}
 
+	/**
+	 * function to perform binary search on string array
+	 * 
+	 * @param s   String value which we want to search in array
+	 * @param arr String type array in which we perform binary search
+	 * @return int value which is index value of the string otherwise return -1
+	 */
+
 	public static int binarySearch(String s, String[] arr) {
+		/*
+		 * insertionSort to sort the array because binary search can perform only on
+		 * sorted array
+		 */
 		String[] ar = insertionSort(arr);
+		/*
+		 * low is lower index of array hig is last index of array mid is to store mid
+		 * index of low and last index
+		 */
 		int low = 0;
 		int hig = ar.length - 1;
 		int mid = 0;
 		while (low <= hig) {
 			mid = (low + hig) / 2;
+			/*
+			 * if s is equal to mid value then it will return the index of mid value else we
+			 * compare s with with mid value if it return -ve value then s is less then mid
+			 * or if it return +ve value then s is greater then mid
+			 */
 			if (s.equalsIgnoreCase(ar[mid])) {
 				return mid;
 			} else if (s.compareToIgnoreCase(ar[mid]) < 0) {
@@ -252,45 +285,94 @@ public class Util {
 		return -1;
 	}
 
+	/**
+	 * function to perform sorting on int value one by one which in known as
+	 * insertion sort
+	 * 
+	 * @param ar int type array which we want to sort
+	 * @return int type sorted array
+	 */
 	public static int[] insertionSort(int[] ar) {
 
+		// for loop to retrieve value from array one by one
+		// for loop is initiate for 1 because we need 2 value to compare
 		for (int i = 1; i < ar.length; i++) {
+
+			// temp hold the value of current index
+			// k hold previous value of current index
 			int temp = ar[i];
 			int k = i - 1;
+
+			// while loop for check the actual position of the current value
+			// while loop work until previous index reach zero or value of
+			// k index value is greater then temp value.
+			// and every time it shift the value of k index to the next index and reduce k
+			// by 1.
+
 			while (k >= 0 && ar[k] > temp) {
 				ar[k + 1] = ar[k];
 				k--;
 			}
+			// to store the current value in it's position
 			ar[k + 1] = temp;
 
 		}
+		// to print sorted array
 		for (int i : ar) {
 			System.out.println(i);
 		}
 		return ar;
 	}
 
+	/**
+	 * function to perform sorting on String value one by one which in known as
+	 * insertion sort
+	 * 
+	 * @param ar String type array which we want to sort
+	 * @return String type sorted array
+	 */
 	public static String[] insertionSort(String[] ar) {
+		// for loop to retrieve value from array one by one
+		// for loop is initiate for 1 because we need 2 value to compare
 		for (int i = 1; i < ar.length; i++) {
+
+			// temp hold the value of current index
+			// k hold previous value of current index
 			String temp = ar[i];
 			int k = i - 1;
+
+			// while loop for check the actual position of the current value
+			// while loop work until previous index reach zero or value of
+			// k index value is greater then temp value.
+			// and every time it shift the value of k index to the next index and reduce k
+			// by 1.
 			while (k >= 0 && temp.compareToIgnoreCase(ar[k]) < 0) {
 				ar[k + 1] = ar[k];
 				k--;
 			}
+			// to store the current value in it's position
 			ar[k + 1] = temp;
 
 		}
+		// to print sorted array
 		for (String i : ar) {
 			System.out.println(i);
 		}
 		return ar;
 	}
 
+	/**
+	 * function to perform bubble sort on int type list
+	 * 
+	 * @param ar int type sorted array
+	 */
 	public static void bubbleSort(int[] ar) {
 		int j;
-		for (int k = 0; k < ar.length / 2 + 1; k++) {
+		// for loop for maximum attempt to sort the array
+		for (int k = 0; k < ar.length; k++) {
+			// to perform shift operation on two value until the are sorted
 			for (int i = 0; i < ar.length - 1; i++) {
+				// j is to get next value
 				j = i + 1;
 				if (ar[i] > ar[j]) {
 					int temp = ar[i];
@@ -299,15 +381,25 @@ public class Util {
 				}
 			}
 		}
+
+		// to print sorted array
 		for (int i : ar) {
 			System.out.println(i);
 		}
 	}
 
+	/**
+	 * function to perform bubble sort on String type list
+	 * 
+	 * @param ar String type sorted array
+	 */
 	public static void bubbleSort(String[] ar) {
 		int j;
+		// for loop for maximum attempt to sort the array
 		for (int k = 0; k < ar.length / 2 + 1; k++) {
+			// to perform shift operation on two value until the are sorted
 			for (int i = 0; i < ar.length - 1; i++) {
+				// j is to get next value
 				j = i + 1;
 				if (ar[i].compareToIgnoreCase(ar[j]) > 0) {
 					String temp = ar[i];
@@ -316,13 +408,26 @@ public class Util {
 				}
 			}
 		}
+
+		// to print sorted array
 		for (String i : ar) {
 			System.out.println(i);
 		}
 	}
 
-	public static void temperaturConversion(String s) {
+	/**
+	 * function to convert Celsius to Fahrenheit or Fahrenheit to Celsius
+	 * 
+	 * @param s String temperature in Celsius or Fahrenheit
+	 */
+	public static void temperatureConversion(String s) {
+
+		// subString to retrieve the Integer value form string and store in n
 		int n = Integer.parseInt(s.substring(0, s.length() - 1));
+
+		// if string contain f in it them it will convert in celsius
+		// else if string contain c in it then it will convert in fahrenheit
+		// and give print
 		if (s.contains("f") || s.contains("F")) {
 			System.out.println(((n - 32) * 5 / 9) + "c");
 		} else if (s.contains("c") || s.contains("c")) {
@@ -330,13 +435,31 @@ public class Util {
 		}
 	}
 
+	/**
+	 * function to calculate monthly payment
+	 * 
+	 * @param P int principal
+	 * @param Y int year
+	 * @param R int rate percent interest compound monthly
+	 * @return double monthly payment
+	 */
 	public static double monthlyPayment(double P, double Y, double R) {
+		// n to convert year into month
 		double n = 12 * Y;
+		// r for rate in 12 month
 		double r = R / (12 * 100);
+		// pri payment per month
 		double pri = P * r / (1 - Math.pow((1 + r), (-n)));
 		return pri;
 	}
 
+	/**
+	 * function to check day on the given date
+	 * 
+	 * @param d int date input
+	 * @param m int month input
+	 * @param y int year input
+	 */
 	public static void dayOfWeek(int d, int m, int y) {
 		int y0 = y - (14 - m) / 12;
 		int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
@@ -344,9 +467,5 @@ public class Util {
 		int d0 = (d + x + 31 * m0 / 12) % 7;
 
 		System.out.println(d0);
-	}
-
-	public static void main(String[] args) {
-
 	}
 }
