@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/******************************************************************************
+ * Purpose: Helper class containing static method.
+ *
+ * @author Akshansh Verma
+ * @version 1.0
+ * @since 03-10-2018
+ *
+ ******************************************************************************/
+
 public class DayOfWeekRunner {
 
 	public static void main(String[] args) {
@@ -10,7 +19,7 @@ public class DayOfWeekRunner {
 		int m = sc.nextInt();
 		System.out.println("enter year");
 		int y = sc.nextInt();
-
+		// call method dayOfWeek of Util class
 		Util.dayOfWeek(d, m, y);
 		sc.close();
 	}
