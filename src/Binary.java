@@ -11,6 +11,7 @@ import java.util.Scanner;
  *
  ******************************************************************************/
 public class Binary {
+
 	/**
 	 * function to swap nibbles
 	 * 
@@ -62,8 +63,9 @@ public class Binary {
 	 * function to convert the binary number to decimal number
 	 * 
 	 * @param s String of binary number
+	 * @return int type binary value
 	 */
-	public static void toDecimal(String s) {
+	public static int toDecimal(String s) {
 		int j = 0;
 		// k to hold decimal number
 		int k = 0;
@@ -78,6 +80,23 @@ public class Binary {
 		}
 		System.out.println(k);
 
+		return (int) k;
+	}
+	/**
+	 * function to check that the decimal number is power of two or not
+	 * @param n int decimal input 
+	 */
+	public static void powerOfTwo(int n) {
+		int i = 0;
+		while ((int) Math.pow(2, i) <= n) {
+			if (n == (int) Math.pow(2, i)) {
+				System.out.println("yes 2^" + i);
+				return;
+			}
+			i++;
+		}
+		System.out.println("no");
+		return;
 	}
 
 	public static void main(String[] args) {
@@ -85,7 +104,8 @@ public class Binary {
 		System.out.println("enter number ");
 		int n = sc.nextInt();
 		String s = swap(DecimalToBinary.toBinary(n));
-		toDecimal(s);
+		powerOfTwo(toDecimal(s));
 		sc.close();
+
 	}
 }
